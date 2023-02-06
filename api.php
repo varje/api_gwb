@@ -1,19 +1,33 @@
 <?php
 header("Content-Type:application/json");
-if (isset($_GET['product_id']) && $_GET['product_id']!="") {
-	include('db.php');
-	$product_id = $_GET['product_id'];
-	$result = mysqli_query(
-	$con,
-	"SELECT * FROM `product` WHERE id=$product_id");
-	if(mysqli_num_rows($result)>0){
-	$row = mysqli_fetch_array($result);
-    echo(json_encode($row));
+include('db.php');
+
+$select = "SELECT * FROM `product`";
+
+switch(key($_GET)) {
+	case 'products':
+		break;
+	case 'name':
+		$name = $_GET['name'];
+		$select .= " WHERE name='".$name."';";
+		break;
+	default:
+		$select = '';
+}
+
+
+if (!empty($select)) {
+	$result = mysqli_query($con, $select);
+	if(mysqli_num_rows($result)>0) {
+		while($row = $result->fetch_assoc()) {
+			echo json_encode($row);
+		}
 	mysqli_close($con);
 	} else {
-		response(NULL, NULL, 200,"No Record Found");
+		echo json_encode("No record found");
 	}
 } else {
-	response(NULL, NULL, 400,"Invalid Request");
+	echo json_encode("Invalid request");
 }
+
 ?>

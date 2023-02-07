@@ -7,33 +7,33 @@ API for retrieving, updating, creating and deleting data.
 ## API calls
 
 ### Data types 
-`<product_name>  VARCHAR`
-`<product_price>  FLOAT`
-`<attribute_name>  VARCHAR`
-`<product_id>  INT`
-`<attribute_id>  INT`
+`<product_name>  VARCHAR`  
+`<product_price>  FLOAT`  
+`<attribute_name>  VARCHAR`  
+`<product_id>  INT`  
+`<attribute_id>  INT`  
 
 ### Create
 
 #### Product
-`GET http://localhost/api_gwb/api.php?insert=product&name=<product_name>&price=<product_price>`
+`GET http://localhost/api_gwb/api.php?insert=product&name=<product_name>&price=<product_price>`  
 
 #### Attribute
-`GET http://localhost/api_gwb/api.php?insert=attribute&name=<attribute_name>&product_id=<product_id>`
+`GET http://localhost/api_gwb/api.php?insert=attribute&name=<attribute_name>&product_id=<product_id>`  
 
 
 ### Update
 
 #### Product
 
-`GET http://localhost/api_gwb/api.php?update=product&id=<product_id>&name=<product_name>&price=<product_price>`
-`GET http://localhost/api_gwb/api.php?update=product&id=<product_id>&name=<product_name>`
-`GET http://localhost/api_gwb/api.php?update=product&id=<product_id>&price=<product_price>`
+`GET http://localhost/api_gwb/api.php?update=product&id=<product_id>&name=<product_name>&price=<product_price>`  
+`GET http://localhost/api_gwb/api.php?update=product&id=<product_id>&name=<product_name>`  
+`GET http://localhost/api_gwb/api.php?update=product&id=<product_id>&price=<product_price>`  
 
 #### Attribute
-`GET http://localhost/api_gwb/api.php?update=attribute&id=<attribute_id>&name=<attribute_name>&product_id=<product_id>`
-`GET http://localhost/api_gwb/api.php?update=attribute&id=<attribute_id>&name=<attribute_name>`
-`GET http://localhost/api_gwb/api.php?update=attribute&id=<attribute_id>&product_id=<product_id>`
+`GET http://localhost/api_gwb/api.php?update=attribute&id=<attribute_id>&name=<attribute_name>&product_id=<product_id>`  
+`GET http://localhost/api_gwb/api.php?update=attribute&id=<attribute_id>&name=<attribute_name>`  
+`GET http://localhost/api_gwb/api.php?update=attribute&id=<attribute_id>&product_id=<product_id>`  
 
 
 ### Delete

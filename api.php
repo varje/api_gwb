@@ -23,6 +23,8 @@ if (in_array(key($_GET), ['products', 'name', 'attribute'])) {
 		$query = delete();
 	} elseif (key($_GET) === 'insert') {
 		$query = insert();
+	} elseif (key($_GET) === 'update') {
+		$query = update();
 	}
 	if (!empty($query)) {
 		$result = mysqli_query($con, $query);
@@ -102,6 +104,48 @@ function insert()
 			$name = $_GET['name'];
 			$product_id = $_GET['product_id'];
 			$query = "INSERT INTO attribute (name, product_id) VALUES ('".$name."', $product_id);";
+			break;
+		default:
+			$query = '';
+	}
+	return $query;
+}
+
+// updating row
+function update() 
+{
+	switch($_GET['update']) {
+		case 'product':
+			$name = $_GET['name'];
+			$price = $_GET['price'];
+			$id = $_GET['id'];
+			if(isset($id)) {
+				if(isset($name) & isset($price)) {
+					$query = "UPDATE product SET name='".$name."', price=$price WHERE id=$id;";
+				} elseif (isset($name)) {
+					$query = "UPDATE product SET name='".$name."' WHERE id=$id;";
+				} elseif (isset($price)) {
+					$query = "UPDATE product SET price=$price WHERE id=$id;";
+				}
+			} else {
+				$query = '';
+			}
+			break;
+		case 'attribute':
+			$name = $_GET['name'];
+			$product_id = $_GET['product_id'];
+			$id = $_GET['id'];
+			if(isset($id)) {
+				if(isset($name) & isset($product_id)) {
+					$query = "UPDATE attribute SET name='".$name."', product_id=$product_id WHERE id=$id;";
+				} elseif (isset($name)) {
+					$query = "UPDATE attribute SET name='".$name."' WHERE id=$id;";
+				} elseif (isset($product_id)) {
+					$query = "UPDATE attribute SET product_id=$product_id WHERE id=$id;";
+				}
+			} else {
+				$query = '';
+			}
 			break;
 		default:
 			$query = '';

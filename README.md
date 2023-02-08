@@ -16,7 +16,8 @@ API for retrieving, updating, creating and deleting data.
 ### Create
 
 #### Product
-`GET http://localhost/api_gwb/api.php?insert=product&name=<product_name>&price=<product_price>`  
+`POST http://localhost/api_gwb/products/create.php`  
+`{"name":<product_name>, "price":<product_price>}`  
 
 #### Attribute
 `GET http://localhost/api_gwb/api.php?insert=attribute&name=<attribute_name>&product_id=<product_id>`  
@@ -26,9 +27,8 @@ API for retrieving, updating, creating and deleting data.
 
 #### Product
 
-`GET http://localhost/api_gwb/api.php?update=product&id=<product_id>&name=<product_name>&price=<product_price>`  
-`GET http://localhost/api_gwb/api.php?update=product&id=<product_id>&name=<product_name>`  
-`GET http://localhost/api_gwb/api.php?update=product&id=<product_id>&price=<product_price>`  
+`PUT http://localhost/api_gwb/products/update.php`  
+`{"id":<product_id,"name":<product_name>, "price":<product_price>}`   
 
 #### Attribute
 `GET http://localhost/api_gwb/api.php?update=attribute&id=<attribute_id>&name=<attribute_name>&product_id=<product_id>`  
@@ -39,7 +39,8 @@ API for retrieving, updating, creating and deleting data.
 ### Delete
 
 #### Product
-`GET http://localhost/api_gwb/api.php?delete=product&id=<product_id>`
+`DELETE http://localhost/api_gwb/products/delete.php`  
+`{"id":<product_id>}`  
 
 #### Attribute
 `GET http://localhost/api_gwb/api.php?delete=attribute&id=<attribute_id>`
@@ -49,15 +50,15 @@ API for retrieving, updating, creating and deleting data.
 
 #### List of products
 
-`GET http://localhost/api_gwb/api.php?products`
+`GET http://localhost/api_gwb/retrieve.php?products`
 
 #### Searching products by name
 
-`GET http://localhost/api_gwb/api.php?name=<product_name>`
+`GET http://localhost/api_gwb/retrieve.php?name=<product_name>`
 
 #### Searching products by attribute
 
-`GET http://localhost/api_gwb/api.php?attribute=<attribute_name>`
+`GET http://localhost/api_gwb/retrieve.php?attribute=<attribute_name>`
 
 
 

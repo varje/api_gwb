@@ -2,6 +2,9 @@
 header("Content-Type:application/json");
 include('db.php');
 
+// request type
+$method = $_SERVER['REQUEST_METHOD'];
+
 // create  and run query
 if (in_array(key($_GET), ['products', 'name', 'attribute'])) {
 	$query = retrieve();
@@ -19,7 +22,7 @@ if (in_array(key($_GET), ['products', 'name', 'attribute'])) {
 	}
 	mysqli_close($con);
 } else {
-	if (key($_GET) === 'delete') {
+	if ($method === 'DELETE') {
 		$query = delete();
 	} elseif (key($_GET) === 'insert') {
 		$query = insert();
@@ -76,18 +79,23 @@ function retrieve()
 // deleting row
 function delete() 
 {
-	switch($_GET['delete']) {
-		case 'product':
-			$id = $_GET['id'];
-			$query = "DELETE FROM product WHERE id=$id;";
-			break;
-		case 'attribute':
-			$id = $_GET['id'];
-			$query = "DELETE FROM attribute WHERE id=$id;";
-			break;
-		default:
-			$query = '';
+	if(isset($_DELETE['product_id'])) {
+		var_dump($_DELETE['product_id']);
+		$id = $_DELETE['product_id'];
+		$query = "DELETE FROM product WHERE id=$id;";
+	// }
+	// 	case 'product':
+	// 		$id = $_GET['id'];
+			
+	// 		break;
+	// 	case 'attribute':
+	// 		$id = $_GET['id'];
+	// 		$query = "DELETE FROM attribute WHERE id=$id;";
+	// 		break;
+	// 	default:
+	// 		$query = '';
 	}
+	var_dump($query);
 	return $query;
 }
 

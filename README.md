@@ -8,18 +8,18 @@ API for retrieving, updating, creating and deleting data.
 # Documentation  
 
 ## Requirements  
-    - PHP 7.0 or higher
-    - MySQL 8.0
-    - Postman (download: [https://www.postman.com/downloads/])    
-    - XAMPP  (download: [https://www.apachefriends.org/])  
+- PHP 7.0 or higher
+- MySQL 8.0
+- Postman (download: [https://www.postman.com/downloads/])    
+- XAMPP  (download: [https://www.apachefriends.org/])  
 
 ## Installation
-    1. Create database from `database.sql`  (eg. with phpMyAdmin import)  
-    1. Fill config.php with your connection info  
-    1. Run server (eg. with XAMPP in Ubuntu: `sudo /opt/lampp/lampp start`)  
-    1. Test server with GET request: `http://localhost/api_gwb/retrieve.php?products`  
-    1. Run other requests with Postman.  
-    1. Success!  
+1. Create database from `database.sql`  (eg. with phpMyAdmin import)  
+1. Fill config.php with your connection info  
+1. Run server (eg. with XAMPP in Ubuntu: `sudo /opt/lampp/lampp start`)  
+1. Test server with GET request: [http://localhost/api_gwb/retrieve.php?products]  
+1. Run other requests with Postman.  
+1. Success!  
 
 
 ## API calls

@@ -61,5 +61,3 @@ API for retrieving, updating, creating and deleting data.
 
 `GET http://localhost/api_gwb/retrieve.php?attribute=<attribute_name>`
 
-
-

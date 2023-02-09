@@ -1,6 +1,13 @@
 <?php
-header("Content-Type:application/json");
+
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
 include('db.php');
+include('helpers.php');
+
 
 // request type
 $method = $_SERVER['REQUEST_METHOD'];
@@ -15,42 +22,14 @@ if (in_array(key($_GET), ['products', 'name', 'attribute'])) {
 				echo json_encode($row);
 			}
 		} else {
-			response(200, "No record found");
+			echo response(200, "No record found");
 		}
 	} else {
-		response(400, "Invalid request");
+		echo response(400, "Invalid request");
 	}
 	mysqli_close($con);
 } else {
-	if ($method === 'DELETE') {
-		$query = delete();
-	} elseif (key($_GET) === 'insert') {
-		$query = insert();
-	} elseif (key($_GET) === 'update') {
-		$query = update();
-	}
-	if (!empty($query)) {
-		$result = mysqli_query($con, $query);
-		if($result === true) {
-			response(200, "Record modified succesfully");
-		} else {
-			response(400, "Error changing record: " . mysqli_error($conn));
-		}
-	} else {
-		response(400, "Invalid request");
-	}
-	mysqli_close($con);
-}
-
-
-// response handling
-function response($status_code, $status)
-{
-	$response['status_code'] = $status_code;
-	$response['status'] = $status;
-	
-	$json_response = json_encode($response);
-	echo $json_response;
+	echo response(400, "Invalid request");
 }
 
 // retrieving data
@@ -74,91 +53,6 @@ function retrieve()
 	}
 
 	return $select;
-}
-
-// deleting row
-function delete() 
-{
-	if(isset($_DELETE['product_id'])) {
-		var_dump($_DELETE['product_id']);
-		$id = $_DELETE['product_id'];
-		$query = "DELETE FROM product WHERE id=$id;";
-	// }
-	// 	case 'product':
-	// 		$id = $_GET['id'];
-			
-	// 		break;
-	// 	case 'attribute':
-	// 		$id = $_GET['id'];
-	// 		$query = "DELETE FROM attribute WHERE id=$id;";
-	// 		break;
-	// 	default:
-	// 		$query = '';
-	}
-	var_dump($query);
-	return $query;
-}
-
-// inserting row
-function insert() 
-{
-	switch($_GET['insert']) {
-		case 'product':
-			$name = $_GET['name'];
-			$price = $_GET['price'];
-			$query = "INSERT INTO product (name, price) VALUES ('".$name."', $price);";
-			break;
-		case 'attribute':
-			$name = $_GET['name'];
-			$product_id = $_GET['product_id'];
-			$query = "INSERT INTO attribute (name, product_id) VALUES ('".$name."', $product_id);";
-			break;
-		default:
-			$query = '';
-	}
-	return $query;
-}
-
-// updating row
-function update() 
-{
-	switch($_GET['update']) {
-		case 'product':
-			$name = $_GET['name'];
-			$price = $_GET['price'];
-			$id = $_GET['id'];
-			if(isset($id)) {
-				if(isset($name) & isset($price)) {
-					$query = "UPDATE product SET name='".$name."', price=$price WHERE id=$id;";
-				} elseif (isset($name)) {
-					$query = "UPDATE product SET name='".$name."' WHERE id=$id;";
-				} elseif (isset($price)) {
-					$query = "UPDATE product SET price=$price WHERE id=$id;";
-				}
-			} else {
-				$query = '';
-			}
-			break;
-		case 'attribute':
-			$name = $_GET['name'];
-			$product_id = $_GET['product_id'];
-			$id = $_GET['id'];
-			if(isset($id)) {
-				if(isset($name) & isset($product_id)) {
-					$query = "UPDATE attribute SET name='".$name."', product_id=$product_id WHERE id=$id;";
-				} elseif (isset($name)) {
-					$query = "UPDATE attribute SET name='".$name."' WHERE id=$id;";
-				} elseif (isset($product_id)) {
-					$query = "UPDATE attribute SET product_id=$product_id WHERE id=$id;";
-				}
-			} else {
-				$query = '';
-			}
-			break;
-		default:
-			$query = '';
-	}
-	return $query;
 }
 
 ?>

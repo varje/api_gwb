@@ -14,8 +14,8 @@ $method = $_SERVER['REQUEST_METHOD'];
 if($method === 'POST')
 {
     $name = $_POST['name'];
-    $price = $_POST['price'];
-    $query = "INSERT INTO product (name, price) VALUES ('".$name."', $price);";
+    $product_id = $_POST['product_id'];
+    $query = "INSERT INTO attribute (name, product_id) VALUES ('".$name."', $product_id);";
 }
 
 // run $query

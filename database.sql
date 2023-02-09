@@ -42,7 +42,7 @@ CREATE TABLE `attribute` (
 
 INSERT INTO `attribute` (`id`, `name`, `product_id`) VALUES
 (1, 'red', 1),
-(4, 'dark', 4);
+(2, 'dark', 3);
 
 -- --------------------------------------------------------
 
@@ -63,8 +63,8 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`id`, `name`, `price`) VALUES
 (1, 'apple', 1),
-(3, 'milk', 2),
-(4, 'chocolate', 1.5);
+(2, 'milk', 2),
+(3, 'chocolate', 1.5);
 
 --
 -- Indexes for dumped tables

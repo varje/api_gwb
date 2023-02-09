@@ -16,14 +16,14 @@ if($method === 'PUT')
     parse_str(file_get_contents('php://input'), $_PUT);
     $id = $_PUT['id'];
     $name = $_PUT['name'];
-    $price = $_PUT['price'];
+    $product_id = $_PUT['product_id'];
     if(isset($id)) {
-        if(isset($name) & isset($price)) {
-            $query = "UPDATE product SET name='".$name."', price=$price WHERE id=$id;";
+        if(isset($name) & isset($product_id)) {
+            $query = "UPDATE product SET name='".$name."', product_id=$product_id WHERE id=$id;";
         } elseif (isset($name)) {
             $query = "UPDATE product SET name='".$name."' WHERE id=$id;";
-        } elseif (isset($price)) {
-            $query = "UPDATE product SET price=$price WHERE id=$id;";
+        } elseif (isset($product_id)) {
+            $query = "UPDATE product SET product_id=$product_id WHERE id=$id;";
         }
     } else {
         $query = '';
